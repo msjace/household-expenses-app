@@ -1,0 +1,31 @@
+.canvasContainer {
+  position: relative;
+  width: 128vw;
+  height: 96vh;
+  margin-top: 40px;
+}
+
+@media (width >= 768px) {
+  .canvasContainer {
+    width: 100%;
+    max-width: 736px;
+    height: 100%;
+    margin: 0 auto;
+  }
+}
+
+.container {
+  padding: 8px;
+}
+
+@media (width >= 768px) {
+  .container {
+    display: flex;
+  }
+}
+
+@media (width >= 768px) {
+  .rangeSelectorContainer {
+    margin-top: 64px;
+  }
+}

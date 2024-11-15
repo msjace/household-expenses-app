@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-recess-order",
+    "stylelint-config-prettier-scss"
+  ],
+  "overrides": [
+    {
+      "files": ["*.module.css", "*.module.scss"],
+      "rules": {
+        "selector-id-pattern": null,
+        "selector-class-pattern": null
+      }
+    }
+  ]
+}

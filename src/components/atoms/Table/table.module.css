@@ -1,0 +1,100 @@
+.filterInputWrapper {
+  margin: 20px;
+}
+
+.sortSelectWrapper {
+  margin: 20px;
+}
+
+.orderSwitchWrapper {
+  margin: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thead {
+  color: #939393;
+  text-align: left;
+  background: #2f2f2f;
+}
+
+.tr:nth-of-type(2n) {
+  background-color: rgb(212 215 216);
+}
+
+.th,
+.td {
+  padding: 4px 20px;
+  border: 2px solid #505050;
+}
+
+/* .th:first-child,
+.td:first-child {
+  border-left: 0;
+}
+
+.th:last-child,
+.controls:last-child {
+  border-right: 0;
+} */
+
+@media (width >= 768px) {
+  .controls {
+    display: flex;
+  }
+}
+
+.filterInput {
+  flex: 1;
+  padding: 16px 20px;
+  margin: 0;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+}
+
+.sortSelect {
+  flex: 1;
+  padding: 8px 12px;
+  margin: 0;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+}
+
+.orderByOption {
+  box-sizing: border-box;
+  margin-top: 10px;
+  border: none;
+}
+
+.switchOrderbutton {
+  padding: 10px 20px;
+  color: #fff;
+  cursor: pointer;
+  background: #2f2f2f;
+  border: 0;
+  border-radius: 4px;
+}
+
+.operationContainer {
+  padding: 10px;
+}
+
+.link {
+  padding: 8px;
+  color: rgb(67 155 190);
+}
+
+.deleteButton {
+  padding: 8px;
+  font-size: 16px;
+  color: rgb(67 155 190);
+  text-align: start;
+  cursor: pointer;
+  background: none;
+  border: none;
+}

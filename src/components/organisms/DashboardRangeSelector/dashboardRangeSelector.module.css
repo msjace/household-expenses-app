@@ -1,0 +1,71 @@
+.container {
+  width: 80vw;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.children {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-weight: 600;
+  color: #555;
+}
+
+.select,
+.dateInput {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.option {
+  color: #333;
+}
+
+.marginTop {
+  margin-top: 8px;
+}
+
+.dateRangeContainer {
+  margin-top: 12px;
+}
+
+.dateInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+@media (width >= 768px) {
+  .container {
+    width: auto;
+  }
+
+  .dateRangeContainer {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+}
