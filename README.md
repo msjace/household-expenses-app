@@ -10,8 +10,8 @@ Additionally, I used nuqs to control the query parameters for the expense analys
 
 Please set up Firebase and add the necessary information to the .env.development.local file.
 
-```
-.env.development.local
+```bash
+touch .env.development.local
 ```
 
 ```bash
