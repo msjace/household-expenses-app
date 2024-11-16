@@ -6,6 +6,18 @@ In Firebase Auth, the usual approach involves using onAuthStateChanged and wrapp
 
 Additionally, I used nuqs to control the query parameters for the expense analysis period, as it is very convenient for this purpose.
 
+### expenses
+
+https://github.com/user-attachments/assets/13d7293e-501d-4eac-a3b4-534e23f84421
+
+### dashboard
+
+
+
+https://github.com/user-attachments/assets/e3758789-2b62-41cf-9fa5-4052d22dfe79
+
+
+
 ## Getting Started
 
 Please set up Firebase and add the necessary information to the .env.development.local file.
