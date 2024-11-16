@@ -1,7 +1,10 @@
+# household-expenses-app
+
 I created a household expenses app using Next.js 15 and the new useActionState hook in React.
 
 This is a lightweight app where each logged-in user can record their personal expenses and review them on the dashboard.
 
+## Developer's Note
 
 ### expenses
 
