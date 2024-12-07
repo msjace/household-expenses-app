@@ -1,15 +1,21 @@
 'use server'
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import type { AuthEmailFormProps, AuthEmailFormState } from '@/common/auth_form'
 import type { IUser } from '@/common/interfaces/user'
 
+import {
+  COOKIE_EXPIRESIN,
+  type AuthEmailFormProps,
+  type AuthEmailFormState,
+} from '@/common/auth_form'
 import { auth } from '@/common/firebase'
+import { authAdmin } from '@/common/firebase_admin'
+import { TextTransformer } from '@/common/text_transformer'
 import { Time } from '@/common/time'
 import { UserStoreRepository } from '@/repositories/server/store/user'
-import { setCookies } from '@/services/server/auth'
 import { SignupValidation } from '@/services/server/validation/signup'
 
 const registerUser = async (authemailForm: AuthEmailFormProps) => {
@@ -34,11 +40,26 @@ const registerUser = async (authemailForm: AuthEmailFormProps) => {
     await new UserStoreRepository(user.id).create(user)
 
     const uid = await userCredential.user.getIdToken()
-    await setCookies(uid)
+
+    const sessionCookie = await authAdmin.createSessionCookie(uid, {
+      expiresIn: COOKIE_EXPIRESIN,
+    })
+    await authAdmin.verifySessionCookie(sessionCookie, true)
+
+    const cookiesInstance = await cookies()
+    cookiesInstance.set({
+      name: 'session',
+      value: sessionCookie,
+      maxAge: COOKIE_EXPIRESIN,
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+      path: '/',
+    })
 
     return { error: null }
   } catch (error: any) {
-    return { error: error.message as string }
+    return { error: TextTransformer.parseFirebaseError(error) }
   }
 }
 
@@ -56,7 +77,7 @@ export async function signup(
       email,
       password,
       zodErrors: errors,
-      registerErrors: null,
+      authErrors: null,
       message: 'Input error has occurred. Please fix it.',
     }
   }
@@ -67,7 +88,7 @@ export async function signup(
       email,
       password,
       zodErrors: null,
-      registerErrors: response.error,
+      authErrors: response.error,
       message: 'Sinup failed.',
     }
   }

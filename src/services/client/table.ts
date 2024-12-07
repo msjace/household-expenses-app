@@ -3,10 +3,11 @@ import type { RowData } from '@/components/atoms/Table/Table'
 import { deleteCategory } from '@/app/actions/category'
 import { deleteExpense } from '@/app/actions/expense'
 
-export enum TableDataType {
-  EXPENSES = 'expenses',
-  CATEGORIES = 'categories',
-}
+export const TableDataType = {
+  EXPENSES: 'expenses',
+  CATEGORIES: 'categories',
+} as const
+export type TableDataType = (typeof TableDataType)[keyof typeof TableDataType]
 
 export class TableService {
   public static async filterItems(

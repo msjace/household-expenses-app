@@ -12,10 +12,11 @@ import type { IExpense } from '@/common/interfaces/expense'
 import type { IFromTo } from '@/common/interfaces/time'
 import type { Dayjs } from 'dayjs'
 
-export enum DatePeriod {
-  EVERY_MONTH = 'EVERY_MONTH',
-  SPECIFIED_PERIOD = 'SPECIFIED_PERIOD',
-}
+export const DatePeriod = {
+  EVERY_MONTH: 'EVERY_MONTH',
+  SPECIFIED_PERIOD: 'SPECIFIED_PERIOD',
+} as const
+export type DatePeriod = (typeof DatePeriod)[keyof typeof DatePeriod]
 
 export interface IMonthOption {
   key: string

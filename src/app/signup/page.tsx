@@ -19,6 +19,9 @@ export default function Page(): React.ReactElement {
     <div className={styles.container}>
       <div className={styles.formContainer}>
         <h2 className={styles.title}>signup</h2>
+        {state.authErrors && (
+          <div className={styles.errorMeassage}>{state.authErrors}</div>
+        )}
         <form className={styles.form} action={formAction}>
           <FormElement
             item="email"

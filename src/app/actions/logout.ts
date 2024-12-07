@@ -5,7 +5,9 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 export async function userLogout() {
-  ;(await cookies()).delete('session')
+  const cookiesInstance = await cookies()
+  cookiesInstance.delete('session')
+
   revalidatePath('/')
   redirect('/login')
 }

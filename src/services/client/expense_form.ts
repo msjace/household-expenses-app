@@ -8,12 +8,13 @@ import { createExpense, updateExpense } from '@/app/actions/expense'
 import { Time } from '@/common/time'
 import { ExpenseValidation } from '@/services/client/validation/expense'
 
-export enum InputType {
-  AMOUNT,
-  DESCRIPTION,
-  CATEGORY_ID,
-  DATE,
-}
+export const InputType = {
+  AMOUNT: 'amount',
+  DESCRIPTION: 'description',
+  CATEGORY_ID: 'category_id',
+  DATE: 'date',
+} as const
+export type InputType = (typeof InputType)[keyof typeof InputType]
 
 export class ExpenseFormService {
   public static init(): IExpense {

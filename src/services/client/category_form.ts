@@ -8,10 +8,11 @@ import { createCategory, updateCategory } from '@/app/actions/category'
 import { Time } from '@/common/time'
 import { CategoryValidation } from '@/services/client/validation/category'
 
-export enum InputType {
-  NAME,
-  PRIORITY,
-}
+export const InputType = {
+  NAME: 'name',
+  PRIORITY: 'priority',
+} as const
+export type InputType = (typeof InputType)[keyof typeof InputType]
 
 export class CategoryFormService {
   public static init(): ICategory {

@@ -69,3 +69,10 @@
   color: #2855c2;
   text-align: center;
 }
+
+.errorMeassage {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ff0000;
+  text-align: center;
+}

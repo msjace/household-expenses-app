@@ -10,7 +10,7 @@ export type AuthEmailFormErrors = {
 
 export type AuthEmailFormState = AuthEmailFormProps & {
   zodErrors: AuthEmailFormErrors
-  registerErrors: string | null
+  authErrors: string | null
   message: string | null
 }
 
@@ -18,6 +18,8 @@ export const INITIAL_AUTH_FORM_STATE: AuthEmailFormState = {
   email: '',
   password: '',
   zodErrors: null,
-  registerErrors: null,
+  authErrors: null,
   message: null,
 }
+
+export const COOKIE_EXPIRESIN = 60 * 60 * 24 * 10 * 1000
