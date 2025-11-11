@@ -14,7 +14,7 @@ import Link from 'next/link'
 
 import styles from './sidebar.module.css'
 
-import { userLogout } from '@/app/actions/logout'
+import { userLogout } from '@/app/actions/auth'
 
 export const Sidebar: React.FC = () => {
   const menuToggleRef = useRef<HTMLElement | null>(null)

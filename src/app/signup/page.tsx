@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import styles from './signup.module.css'
 
-import { signup } from '@/app/actions/signup'
+import { signup } from '@/app/actions/auth'
 import { INITIAL_AUTH_FORM_STATE } from '@/common/auth_form'
 import { FormElement } from '@/components/molecules/FormElement/FormElement'
 

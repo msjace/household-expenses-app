@@ -50,7 +50,6 @@ export class CategoryFormService {
   public static async save(
     router: AppRouterInstance,
     category: ICategory,
-    userId: string,
     setErrorMessage: React.Dispatch<React.SetStateAction<ErrorMessageState>>,
     isCreate = false
   ): Promise<void> {
@@ -58,9 +57,9 @@ export class CategoryFormService {
       CategoryValidation.validateForm(category)
 
       if (isCreate) {
-        await createCategory(category, userId)
+        await createCategory(category)
       } else {
-        await updateCategory(category, userId)
+        await updateCategory(category)
       }
 
       router.push('/categories')

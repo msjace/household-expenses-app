@@ -1,8 +1,7 @@
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import { getCategory } from '@/app/actions/category'
 import { CategoryForm } from '@/components/organisms/CategoryForm/CategoryForm'
-import { getAuthUser } from '@/services/server/auth'
 
 interface Props {
   params: {
@@ -15,13 +14,8 @@ export default async function Page({
 }: Props): Promise<React.ReactElement> {
   const { categoryId } = await params
 
-  const authUser = await getAuthUser()
-  if (!authUser) redirect('/login')
-
-  const category = await getCategory(categoryId, authUser.id)
+  const category = await getCategory(categoryId)
   if (!category) notFound()
 
-  return (
-    <CategoryForm user={authUser} categoryJson={JSON.stringify(category)} />
-  )
+  return <CategoryForm categoryJson={JSON.stringify(category)} />
 }

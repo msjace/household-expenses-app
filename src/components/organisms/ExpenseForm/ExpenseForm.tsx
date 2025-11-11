@@ -8,7 +8,6 @@ import styles from './ExpenseForm.module.css'
 
 import type { ICategory } from '@/common/interfaces/category'
 import type { IExpense } from '@/common/interfaces/expense'
-import type { IAuthUser } from '@/common/interfaces/user'
 import type { ErrorMessageState } from '@/services/client/alert'
 
 import { useErrorAlert } from '@/services/client/alert'
@@ -16,7 +15,6 @@ import { InputType } from '@/services/client/expense_form'
 import { ExpenseFormService } from '@/services/client/expense_form'
 
 interface IExpenseFormProps {
-  user: IAuthUser
   categoriesJson: string
   expenseJson: string
   isCreate?: boolean
@@ -39,13 +37,7 @@ export const ExpenseForm: React.FC<IExpenseFormProps> = (props) => {
   ): void => ExpenseFormService.onChangeInput(type, e, setExpense)
 
   const save = () => {
-    ExpenseFormService.save(
-      router,
-      expense,
-      props.user.id,
-      setErrorMessage,
-      props.isCreate
-    )
+    ExpenseFormService.save(router, expense, setErrorMessage, props.isCreate)
   }
 
   return (

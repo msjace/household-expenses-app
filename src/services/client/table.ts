@@ -69,15 +69,14 @@ export class TableService {
   public static async deleteDoc(
     type: TableDataType,
     docId: string,
-    userId: string,
     setRows: React.Dispatch<React.SetStateAction<RowData[]>>
   ): Promise<void> {
     switch (type) {
       case TableDataType.CATEGORIES:
-        await deleteCategory(docId, userId)
+        await deleteCategory(docId)
         break
       case TableDataType.EXPENSES:
-        await deleteExpense(docId, userId)
+        await deleteExpense(docId)
         break
     }
     setRows((prev) => prev.filter((row) => row.id !== docId))

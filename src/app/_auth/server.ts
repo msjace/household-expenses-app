@@ -1,12 +1,15 @@
-'use server'
+import 'server-only'
+
+import { cache } from 'react'
 
 import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
 import type { IAuthUser } from '@/common/interfaces/user'
 
 import { authAdmin } from '@/common/firebase_admin'
 
-export async function getAuthUser(): Promise<IAuthUser | null> {
+const getAuthUser = cache(async (): Promise<IAuthUser | null> => {
   const session = (await cookies()).get('session')?.value
   if (!session) {
     return null
@@ -22,4 +25,10 @@ export async function getAuthUser(): Promise<IAuthUser | null> {
   } catch {
     return null
   }
+})
+
+export const requireAuth = async (): Promise<IAuthUser> => {
+  const authUser = await getAuthUser()
+  if (!authUser) redirect('/login')
+  return authUser
 }

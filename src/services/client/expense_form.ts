@@ -58,7 +58,6 @@ export class ExpenseFormService {
   public static async save(
     router: AppRouterInstance,
     expense: IExpense,
-    userId: string,
     setErrorMessage: React.Dispatch<React.SetStateAction<ErrorMessageState>>,
     isCreate = false
   ): Promise<void> {
@@ -66,9 +65,9 @@ export class ExpenseFormService {
       ExpenseValidation.validateForm(expense)
 
       if (isCreate) {
-        await createExpense(expense, userId)
+        await createExpense(expense)
       } else {
-        await updateExpense(expense, userId)
+        await updateExpense(expense)
       }
 
       router.push('/expenses')

@@ -15,7 +15,6 @@ export interface RowData {
 
 interface ITableProps {
   type: TableDataType
-  userId: string
   rows: RowData[]
 }
 
@@ -41,7 +40,7 @@ export const Table: React.FC<ITableProps> = (props) => {
   }
 
   const deleteDoc = (categoryId: string): void => {
-    TableService.deleteDoc(props.type, categoryId, props.userId, setRows)
+    TableService.deleteDoc(props.type, categoryId, setRows)
   }
 
   return (

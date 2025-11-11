@@ -7,14 +7,12 @@ import { useRouter } from 'next/navigation'
 import styles from './categoryForm.module.css'
 
 import type { ICategory } from '@/common/interfaces/category'
-import type { IAuthUser } from '@/common/interfaces/user'
 import type { ErrorMessageState } from '@/services/client/alert'
 
 import { useErrorAlert } from '@/services/client/alert'
 import { CategoryFormService, InputType } from '@/services/client/category_form'
 
 interface ICategoryFormProps {
-  user: IAuthUser
   categoryJson: string
   isCreate?: boolean
 }
@@ -37,13 +35,7 @@ export const CategoryForm: React.FC<ICategoryFormProps> = (props) => {
   ): void => CategoryFormService.onChangeInput(type, e, setCategory)
 
   const save = () => {
-    CategoryFormService.save(
-      router,
-      category,
-      props.user.id,
-      setErrorMessage,
-      props.isCreate
-    )
+    CategoryFormService.save(router, category, setErrorMessage, props.isCreate)
   }
   return (
     <div className={styles.formContainer}>

@@ -4,47 +4,43 @@ import { revalidatePath } from 'next/cache'
 
 import type { IExpense } from '@/common/interfaces/expense'
 
+import { requireAuth } from '@/app/_auth/server'
 import { ExpenseStoreRepository } from '@/repositories/server/store/expense'
 
-export const getExpenses = async (userId: string): Promise<IExpense[]> => {
-  const repo = new ExpenseStoreRepository(userId)
+export const getExpenses = async (): Promise<IExpense[]> => {
+  const authUser = await requireAuth()
+  const repo = new ExpenseStoreRepository(authUser.id)
   const expenses = await repo.getRecentData()
   return expenses
 }
 
 export const getExpense = async (
-  expenseId: string,
-  userId: string
+  expenseId: string
 ): Promise<IExpense | null> => {
-  const repo = new ExpenseStoreRepository(userId)
+  const authUser = await requireAuth()
+  const repo = new ExpenseStoreRepository(authUser.id)
   const expense = await repo.findById(expenseId)
   if (!expense) return null
   return expense
 }
 
-export const createExpense = async (
-  expense: IExpense,
-  userId: string
-): Promise<void> => {
-  const repo = new ExpenseStoreRepository(userId)
+export const createExpense = async (expense: IExpense): Promise<void> => {
+  const authUser = await requireAuth()
+  const repo = new ExpenseStoreRepository(authUser.id)
   await repo.create(expense)
   revalidatePath('/')
 }
 
-export const updateExpense = async (
-  expense: IExpense,
-  userId: string
-): Promise<void> => {
-  const repo = new ExpenseStoreRepository(userId)
+export const updateExpense = async (expense: IExpense): Promise<void> => {
+  const authUser = await requireAuth()
+  const repo = new ExpenseStoreRepository(authUser.id)
   await repo.update(expense.id, expense)
   revalidatePath('/')
 }
 
-export const deleteExpense = async (
-  expenseId: string,
-  userId: string
-): Promise<void> => {
-  const repo = new ExpenseStoreRepository(userId)
+export const deleteExpense = async (expenseId: string): Promise<void> => {
+  const authUser = await requireAuth()
+  const repo = new ExpenseStoreRepository(authUser.id)
   await repo.delete(expenseId)
   revalidatePath('/')
 }

@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation'
-
 import type { RowData } from '@/components/atoms/Table/Table'
 
 import { getCategories } from '@/app/actions/category'
@@ -7,13 +5,9 @@ import { getExpenses } from '@/app/actions/expense'
 import { LinkButton } from '@/components/atoms/Button/LinkButton'
 import { Table } from '@/components/atoms/Table/Table'
 import { TableDataType } from '@/services/client/table'
-import { getAuthUser } from '@/services/server/auth'
 
 export default async function Page(): Promise<React.ReactElement> {
-  const authUser = await getAuthUser()
-  if (!authUser) redirect('/login')
-
-  const expenses = await getExpenses(authUser.id)
+  const expenses = await getExpenses()
   if (expenses.length === 0) {
     return (
       <LinkButton
@@ -24,7 +18,7 @@ export default async function Page(): Promise<React.ReactElement> {
     )
   }
 
-  const categories = await getCategories(authUser.id)
+  const categories = await getCategories()
   const convertedExpenses: RowData[] = expenses.map((ex) => ({
     id: ex.id,
     amount: ex.amount,
@@ -40,11 +34,7 @@ export default async function Page(): Promise<React.ReactElement> {
         nextPage="/expenses/create"
         position="right"
       />
-      <Table
-        type={TableDataType.EXPENSES}
-        rows={convertedExpenses}
-        userId={authUser.id}
-      />
+      <Table type={TableDataType.EXPENSES} rows={convertedExpenses} />
     </>
   )
 }
